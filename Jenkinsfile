@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Global 변수 선언
         dockerRepo = "anarchie72/edu1"
-        dockerCredentials = 'docker_ci_edu15'
+        dockerCredentials = 'private_ci_edu15'
         dockerImageVersioned = ""
         dockerImageLatest = ""
     }
