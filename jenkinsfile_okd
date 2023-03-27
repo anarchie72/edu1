@@ -20,7 +20,7 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu15',
        stage('Clone Git Project') {
             sh "pwd"
             echo 'Clone'
-            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/anarchie72/edu1.git'
+            git branch: 'master', credentialsId: 'edu15_github_ci', url: 'https://github.com/anarchie72/edu1.git'
             sh "ls"
         }
                              // podman login -u ${USERNAME} -p ${PASSWORD} --log-level=debug ${docker_registry} --tls-verify=false
