@@ -1,18 +1,18 @@
 def label = "agent-${UUID.randomUUID().toString()}"
 def gitBranch = 'master'
 def docker_registry = "https://211.252.85.148:40002"  
-def imageName = "211.252.85.148:40002/edu/edu1"
+def imageName = "211.252.85.148:40002/edu15/edu1"
 
 def TAG = getTag(gitBranch)
 
-podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu30',
+podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu15',
     containers: [
         containerTemplate(name: 'podman', image: 'mattermost/podman:1.8.0', ttyEnabled: true, command: 'cat', privileged: true, alwaysPullImage: true)
         ,containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave:latest-jdk11', args: '${computer.jnlpmac} ${computer.name}')
     ],
     volumes: [
         hostPathVolume(hostPath: '/etc/containers' , mountPath: '/var/lib/containers' ),
-        persistentVolumeClaim(mountPath: '/var/jenkins_home', claimName: 'jenkins-edu-slave-pvc',readOnly: false)
+        persistentVolumeClaim(mountPath: '/var/jenkins_home', claimName: 'jenkins-edu15-slave-pvc',readOnly: false)
         ]){    
     //node("podman-agent") {
     
@@ -20,7 +20,7 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu30',
        stage('Clone Git Project') {
             sh "pwd"
             echo 'Clone'
-            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/shclub/edu1.git'
+            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/anarchie72/edu1.git'
             sh "ls"
         }
                              // podman login -u ${USERNAME} -p ${PASSWORD} --log-level=debug ${docker_registry} --tls-verify=false
